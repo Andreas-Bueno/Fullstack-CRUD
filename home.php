@@ -45,31 +45,9 @@ $exibe_usuarios = show_users();
                             </div>
                     </div>
                     <div class="flex items-center bg-red-600">
-
-
                     </div>
-
-
-                    <div x-data="{ open: false}">
-                    <button
-                    @click="open = ! open"
-                     id="btnAddUser" name="btnAddUser" class="bg-pink-500 relative  p-1 text-white-400 hover:text-white focus:outline-none focus:ring-2d focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >Cadastrar Usuário
-                    </button>
-
-                        <div x-show="open" x-transition>
-                            <div class="absolute flex h-60 w-4/12 bg-red-600 z-40 text-black">
-                            <form action="functions.php" method="POST" class="flex items-center p-1 gap-2" required>
-                                <label for="">Nome</label>
-                                <input class="p-1" type="text" id="name_create" name="name_create">
-
-                                <label for="">Email</label>
-                                <input class="p-1" id="email_create" name="email_create" type="email" required>
-
-                                <button name="btn_enviar" type="submit" class="text-black font-bold h-1button2 w-10"
-                                >Finalizar</button>
-                            </form>
-                            <!-- pegando os dados do form -->
+                    <div>
+                                    <a href="cadastro_usuario.php" name="btn_enviar" class="text-black font-bold h-1 button2 w-10 bg-pink-700 w-20 h-20">Cadastrar Novo Usuário</a>
 
                             </div>
                         </div>
