@@ -47,14 +47,15 @@ $exibe_usuarios = show_users();
                     <div class="flex items-center bg-red-600">
                     </div>
                     <div>
-                                    <a href="cadastro_usuario.php" name="btn_enviar" class="text-black font-bold h-1 button2 w-10 bg-pink-700 w-20 h-20">Cadastrar Novo Usuário</a>
+                        <a href="cadastro_usuario.php" name="btn_enviar" class="text-black font-bold h-1 button2 w-10 bg-pink-700 w-20 h-20 p-2 rounded-md">Cadastrar Novo Usuário</a>
 
-                            </div>
-                        </div>
                     </div>
-
                 </div>
-            </div>
+
+
+
+        </div>
+        </div>
         </div>
         </div>
         </div>
@@ -137,16 +138,24 @@ $exibe_usuarios = show_users();
 
 
 
-                            <a id="BtnReset" name="BtnReset" class="bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="update_senha.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
+                            <a id="BtnReset" name="BtnReset" class="mx-4 bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="update_senha.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
 
 
                                 Resetar senha
 
                             </a>
 
+                            <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="delete_users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
+
+
+                                Deletar usuario
+
+                            </a>
                         </td>
                     </tr>
+
                 <?php } ?>
+
             </tbody>
         </table>
     </div>

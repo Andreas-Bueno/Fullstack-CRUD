@@ -29,7 +29,7 @@
                             <div>
                                 <label for="email" class="backdrop-blur-sm block text-sm font-medium leading-6 text-cyan-500">Email</label>
                                 <div class="mt-2">
-                                    <input id="email" name="email" type="email" autocomplete="email" required
+                                    <input id="email" name="email" type="email" autocomplete="email" required autofocus
                                         class="border-4 invalid:border-Cyan-500 invalid:text-red-600
                                          focus:invalid:border-blue-500 focus:invalid:ring-blue-500 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
