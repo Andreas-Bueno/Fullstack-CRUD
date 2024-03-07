@@ -5,7 +5,13 @@ include_once('functions.php');
 
 session_start();
 connectionDb();
+
+
+$search_input = $_GET['search_input'];
+
+
 $exibe_usuarios = show_users();
+
 
 ?>
 
@@ -20,13 +26,13 @@ $exibe_usuarios = show_users();
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body>
+<body class="bg-stone-950  text-white w-full h-full">
 
-    <nav class=" bg-gray-800 text-gray-200 p-10">
-        <h1 class="mt-0  text-2xl	font-bold font-medium text-pink-700 text-center">
+    <nav class="bg-stone-950   text-gray-700 p-10 w-screen">
+        <h1 class="mt-0  text-2xl	font-bold font-medium text-pink-700 text-center font-bold">
             Olá, bem-vindo ao Painel Administrativo.
         </h1>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class=" mx-20  max-w-7xl px-4 sm:px-6 lg:px-8 flex w-screen  flex  ">
             <div class="flex h-16 justify-between">
                 <div class="flex">
                     <div class="-ml-2 mr-2 flex items-center md:hidden">
@@ -44,18 +50,16 @@ $exibe_usuarios = show_users();
                                 <!--    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a> -->
                             </div>
                     </div>
-                    <div class="flex items-center bg-red-600">
+                    <div class="">
                     </div>
-                    <div>
-                        <a href="cadastro_usuario.php" name="btn_enviar" class="text-black font-bold h-1 button2 w-10 bg-pink-700 w-20 h-20 p-2 rounded-md">Cadastrar Novo Usuário</a>
+                    <div class="flex items-center justify-end">
+                        <a href="cadastro_usuario.php" name="btn_enviar" class=" p-1 w-52 flex justify-center items-center text-black font-bold h-9 button2 bg-pink-700 rounded-md">Cadastrar Usuário</a>
 
                     </div>
                 </div>
 
 
-
-        </div>
-        </div>
+            </div>
         </div>
         </div>
         </div>
@@ -96,9 +100,23 @@ $exibe_usuarios = show_users();
         </div>
     </nav>
 
+    <div>
+        <form method="GET" class=" w-10/12 h-10 flex  flex mx-40">
+            <input type="text" name="search_input" id="search_input" placeholder="Nome usuário..." class="flex w-44 p-1 h-8 text-black rounded-sm">
+
+            <button id="btn_search" name="btn_search" onclick="search_data()" type="submit" class="mx-2 relative h-8 bg-pink-600 p-1 rounded-md w-14">Buscar</button>
+
+    </div>
+    </form>
+
+
+
+    </div>
+
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs bg-stone-200 bg-stone-950  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                     </th>
@@ -108,8 +126,11 @@ $exibe_usuarios = show_users();
                     <th scope="col" class="px-6 py-3">
                         E-mail
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-4 py-3">
                         Password
+                    </th>
+                    <th scope="col" class="px-4 py-3">
+                        Status
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
@@ -117,8 +138,9 @@ $exibe_usuarios = show_users();
                 </tr>
             </thead>
             <tbody>
+
                 <?php for ($i = 0; $i < count($exibe_usuarios); $i++) { ?>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-pink-600 hover:text-gray-900">
+                    <tr class="bg-white border-b dark:bg-stone-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-pink-600 hover:text-gray-900">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $exibe_usuarios[$i]['id'];   ?>
                         </th>
@@ -130,8 +152,14 @@ $exibe_usuarios = show_users();
                             ?>
 
                         </td>
+
                         <td class="px-6 py-4">
                             <?php echo $exibe_usuarios[$i]['senha'];   ?>
+                        </td>
+                        <td class="px-6 py-4">
+                            <?php echo $exibe_usuarios[$i]['status'];
+                            ?>
+
                         </td>
                         </td>
                         <td class="px-6 py-4">
@@ -145,10 +173,10 @@ $exibe_usuarios = show_users();
 
                             </a>
 
-                            <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="delete_users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
+                            <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-red-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-red-700 px-6 py-4" href="actions/delete.users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&status=<?= $exibe_usuarios[$i]['status']; ?>">
 
 
-                                Deletar usuario
+                                Alterar Status
 
                             </a>
                         </td>
@@ -159,6 +187,14 @@ $exibe_usuarios = show_users();
             </tbody>
         </table>
     </div>
+
+
 </body>
+    <script>
+        var search_bar = document.getElementById('search_input');
+        function search_data() {
+            window.location = 'functions.php?search='+ search_bar.value;
+        }
+    </script>
 
 </html>
