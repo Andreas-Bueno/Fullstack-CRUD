@@ -26,175 +26,114 @@ $exibe_usuarios = show_users();
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="bg-stone-950  text-white w-full h-full">
+<body class="flex bg-stone-950 text-white w-full h-full">
 
-    <nav class="bg-stone-950   text-gray-700 p-10 w-screen">
-        <h1 class="mt-0  text-2xl	font-bold font-medium text-pink-700 text-center font-bold">
+    <nav class="grid bg-stone-950 text-gray-700 p-10 w-screen items-center mx-16">
+        <h1 class="mt-10  text-2xl	font-bold font-medium text-pink-700 text-center font-bold">
             Olá, bem-vindo ao Painel Administrativo.
         </h1>
-        <div class=" mx-20  max-w-7xl px-4 sm:px-6 lg:px-8 flex w-screen  flex  ">
-            <div class="flex h-16 justify-between">
-                <div class="flex">
-                    <div class="-ml-2 mr-2 flex items-center md:hidden">
-                        <!-- Mobile menu button -->
-                        <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                            <span class="absolute -inset-0.5"></span>
-                            <span class="sr-only">Open main menu</span>
-
-
-                            <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-                                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                <!-- <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a> -->
-                                <!--  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a> -->
-                                <!--    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a> -->
-                                <!--    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a> -->
-                            </div>
-                    </div>
-                    <div class="">
-                    </div>
-                    <div class="flex items-center justify-end">
-                        <a href="cadastro_usuario.php" name="btn_enviar" class=" p-1 w-52 flex justify-center items-center text-black font-bold h-9 button2 bg-pink-700 rounded-md">Cadastrar Usuário</a>
-
-                    </div>
-                </div>
-
+        <div class="flex items-center  mt-20 my-6">
+            <div class="flex">
+                <a href="cadastro_usuario.php" name="btn_enviar" class=" p-1 w-52 flex justify-center items-center text-black font-bold h-9 button2 bg-pink-700 rounded-md">Cadastrar Usuário</a>
 
             </div>
-        </div>
-        </div>
-        </div>
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="md:hidden" id="mobile-menu">
-            <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+            <div class="flex w-8/12 items-center justify-between">
+                <form method="GET" class=" w-10/12 h-10 flex justify-center mx-40">
+                    <input type="text" name="search_input" id="search_input" placeholder="Busque aqui..." class="flex w-60 p-1 h-9 text-black rounded-sm">
+                    <button id="btn_search" name="btn_search" onclick="search_data()" type="submit" class="mx-2 relative h-9 bg-pink-600 p-1 rounded-md w-20">Buscar</button>
+                </form>
             </div>
-            <div class="border-t border-gray-700 pb-3 pt-4">
-                <div class="flex items-center px-5 sm:px-6">
-                    <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                    </div>
-                    <div class="ml-3">
-                        <div class="text-base font-medium text-white">Tom Cook</div>
-                        <div class="text-sm font-medium text-gray-400">tom@example.com</div>
-                    </div>
-                    <button type="button" class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="mt-3 space-y-1 px-2 sm:px-3">
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your
-                        Profile</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign
-                        out</a>
-                </div>
-            </div>
+        </div>
+
+
+
+
+
+        </div>
+
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-9-12">
+            <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs bg-pink-950 text-white font-bold uppercase my-2">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nome
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            E-mail
+                        </th>
+                        <th scope="col" class="px-5 py-3">
+                            Senha
+                        </th>
+                        <th scope="col" class="px-4 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Edit</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php for ($i = 0; $i < count($exibe_usuarios); $i++) { ?>
+                        <tr class="bg-white border-b dark:bg-stone-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-pink-600 hover:text-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <?php echo $exibe_usuarios[$i]['id'];   ?>
+                            </th>
+                            <td class="px-6 py-4">
+                                <?php echo $exibe_usuarios[$i]['usuario'];   ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?php echo $exibe_usuarios[$i]['email'];
+                                ?>
+
+                            </td>
+
+                            <td class="px-6 py-4">
+                                <?php echo $exibe_usuarios[$i]['senha'];   ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?php echo $exibe_usuarios[$i]['status'];
+                                ?>
+
+                            </td>
+                            </td>
+                            <td class="px-6 py-4">
+
+
+
+                                <a id="BtnReset" name="BtnReset" class="mx-4 bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="update_senha.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
+
+
+                                    Resetar senha
+
+                                </a>
+
+                                <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-red-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-red-700 px-6 py-4" href="actions/delete.users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&status=<?= $exibe_usuarios[$i]['status']; ?>">
+
+
+                                    Alterar Status
+
+                                </a>
+                            </td>
+                        </tr>
+
+                    <?php } ?>
+
+                </tbody>
+            </table>
         </div>
     </nav>
 
-    <div>
-        <form method="GET" class=" w-10/12 h-10 flex  flex mx-40">
-            <input type="text" name="search_input" id="search_input" placeholder="Nome usuário..." class="flex w-44 p-1 h-8 text-black rounded-sm">
-
-            <button id="btn_search" name="btn_search" onclick="search_data()" type="submit" class="mx-2 relative h-8 bg-pink-600 p-1 rounded-md w-14">Buscar</button>
-
-    </div>
-    </form>
-
-
-
-    </div>
-
-
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs bg-stone-200 bg-stone-950  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        E-mail
-                    </th>
-                    <th scope="col" class="px-4 py-3">
-                        Password
-                    </th>
-                    <th scope="col" class="px-4 py-3">
-                        Status
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php for ($i = 0; $i < count($exibe_usuarios); $i++) { ?>
-                    <tr class="bg-white border-b dark:bg-stone-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-pink-600 hover:text-gray-900">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <?php echo $exibe_usuarios[$i]['id'];   ?>
-                        </th>
-                        <td class="px-6 py-4">
-                            <?php echo $exibe_usuarios[$i]['usuario'];   ?>
-                        </td>
-                        <td class="px-6 py-4">
-                            <?php echo $exibe_usuarios[$i]['email'];
-                            ?>
-
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <?php echo $exibe_usuarios[$i]['senha'];   ?>
-                        </td>
-                        <td class="px-6 py-4">
-                            <?php echo $exibe_usuarios[$i]['status'];
-                            ?>
-
-                        </td>
-                        </td>
-                        <td class="px-6 py-4">
-
-
-
-                            <a id="BtnReset" name="BtnReset" class="mx-4 bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="update_senha.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
-
-
-                                Resetar senha
-
-                            </a>
-
-                            <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-red-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-red-700 px-6 py-4" href="actions/delete.users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&status=<?= $exibe_usuarios[$i]['status']; ?>">
-
-
-                                Alterar Status
-
-                            </a>
-                        </td>
-                    </tr>
-
-                <?php } ?>
-
-            </tbody>
-        </table>
-    </div>
-
-
 </body>
-    <script>
-        var search_bar = document.getElementById('search_input');
-        function search_data() {
-            window.location = 'functions.php?search='+ search_bar.value;
-        }
-    </script>
+<script>
+    var search_bar = document.getElementById('search_input');
+
+    function search_data() {
+        window.location = 'functions.php?search=' + search_bar.value;
+    }
+</script>
 
 </html>
