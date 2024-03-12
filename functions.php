@@ -16,7 +16,6 @@ function show_users()
 {
     if (!empty($_GET['search_input'])) {
         $input = $_GET['search_input'];
-        echo $input;
         $sql= "SELECT * FROM `usuario` WHERE usuario LIKE '$input'";
         $resultado = mysql_query($sql);
 

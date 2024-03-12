@@ -22,21 +22,21 @@ connectionDb();
 </head>
 
 <body class="flex justify-center items-center h-screen w-screen  bg-gradient-to-r from-stone-950 to-stone-700 text-white ">
-    <form action="actions/action_create_user.php" method="post" class="grid mx-2">
+    <form action="actions/action_create_user.php" method="post" class="grid mx-1">
 
-        <h1 class="p-2 font-bold text-2xl h-10 my-4 text-pink-900">Cadastro de usuário</h1>
-        <label for="name_create" class="rounded-md p-2 font-bold text-md text-pink-800">Nome</label>
+        <h1 class="p-2 font-bold text-3xl h-10 my-4 text-white">Cadastro de usuário</h1>
+        <label for="name_create" class="rounded-md p-2 font-bold text-md text-white mt-10">Nome</label>
 
-        <input type="name" name="name_create" id="name_create" placeholder="Nome..." autofocus class="rounded-md p-2 text-black" required>
+        <input type="name" name="name_create" id="name_create" placeholder="Nome..." autofocus class="mt-4 rounded-md p-2 text-black" required>
         <br>
         <div>
             <?php echo  $name_usuario_cadastro_error; ?>
         </div>
         <br>
-        <label for="email_create" class="rounded-md p-2 font-bold text-md text-pink-800">E-mail</label>
+        <label for="email_create" class=" rounded-md p-2 font-bold text-md rounded-full text-white">E-mail</label>
 
 
-        <input type="email" name="email_create" id="email_create" placeholder="exemplo@exemplo.com" required class="rounded-md p-2 text-black">
+        <input type="email" name="email_create" id="email_create" placeholder="exemplo@exemplo.com" required class="mt-4 rounded-md p-2 text-black">
         <br>
         <div>
             <?php echo  $email_usuario_cadastro_error; ?>
@@ -48,8 +48,16 @@ connectionDb();
             Cadastrar</button>
 
 
+        <a href="home.php" class="mt-3 flex justify-center items-center p-2 font-semibold text-white shadow-sm hover:bg-pink-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 relative w-full rounded-md w-14 h-10 font--4xl font-bold text-xl bg-pink-950">
+
+
+            Voltar</a>
+
+
 
     </form>
+    </form>
+
     <div>
 
 </body>

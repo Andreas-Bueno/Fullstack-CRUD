@@ -26,21 +26,21 @@ $exibe_usuarios = show_users();
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex bg-stone-950 text-white w-full h-full">
+<body class="flex text-white  w-full h-full">
 
-    <nav class="grid bg-stone-950 text-gray-700 p-10 w-screen items-center mx-16">
-        <h1 class="mt-10  text-2xl	font-bold font-medium text-pink-700 text-center font-bold">
-            Olá, bem-vindo ao Painel Administrativo.
+    <nav class="grid  bg-gradient-to-r from-neutral-400 to-neutral-700	p-10 w-screen">
+        <h1 class="mt-10  text-3xl	font-bold font-medium text-white text-center font-bold">
+            Bem-vindo ao Painel Administrativo.
         </h1>
         <div class="flex items-center  mt-20 my-6">
             <div class="flex">
-                <a href="cadastro_usuario.php" name="btn_enviar" class=" p-1 w-52 flex justify-center items-center text-black font-bold h-9 button2 bg-pink-700 rounded-md">Cadastrar Usuário</a>
+                <a href="cadastro_usuario.php" name="btn_enviar" class="text-white p-1 w-52 flex justify-center items-center font-bold h-9 button2 bg-pink-950 rounded-md hover:bg-pink-700">Cadastrar Usuário</a>
 
             </div>
             <div class="flex w-8/12 items-center justify-between">
                 <form method="GET" class=" w-10/12 h-10 flex justify-center mx-40">
                     <input type="text" name="search_input" id="search_input" placeholder="Busque aqui..." class="flex w-60 p-1 h-9 text-black rounded-sm">
-                    <button id="btn_search" name="btn_search" onclick="search_data()" type="submit" class="mx-2 relative h-9 bg-pink-600 p-1 rounded-md w-20">Buscar</button>
+                    <button id="btn_search" name="btn_search" onclick="search_data()" type="submit" class="font-bold mx-2 relative h-9 bg-pink-950 p-1 rounded-md w-20 hover:bg-pink-700">Buscar</button>
                 </form>
             </div>
         </div>
@@ -52,9 +52,9 @@ $exibe_usuarios = show_users();
         </div>
 
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-9-12">
-            <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs bg-pink-950 text-white font-bold uppercase my-2">
+        <div class="relative overflow-x-auto  sm:rounded-lg w-9-12">
+            <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 rounded-full shadow-xl">
+                <thead class="h-12 text-xs bg-white  bg-opacity-5 text-white font-bold font-2xl  my-2  p-2">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                         </th>
@@ -75,10 +75,10 @@ $exibe_usuarios = show_users();
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
 
                     <?php for ($i = 0; $i < count($exibe_usuarios); $i++) { ?>
-                        <tr class="bg-white border-b dark:bg-stone-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-pink-600 hover:text-gray-900">
+                        <tr class="border-4 border-double border-white dark:bg-stone-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-pink-600 hover:text-gray-900">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <?php echo $exibe_usuarios[$i]['id'];   ?>
                             </th>
@@ -100,18 +100,18 @@ $exibe_usuarios = show_users();
 
                             </td>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="p-7">
 
 
 
-                                <a id="BtnReset" name="BtnReset" class="mx-4 bg-pink-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4" href="update_senha.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
+                                <a id="BtnReset" name="BtnReset" class="mx-4 bg-pink-950 rounded-md text-white  hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4 p-2" href="update_senha.php?id=<?= $exibe_usuarios[$i]['id']; ?>&email=<?= $exibe_usuarios[$i]['email']; ?>">
 
 
                                     Resetar senha
 
                                 </a>
 
-                                <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-red-600 rounded-md text-gray-900 outline hover:outline-none dark:md:hover:bg-red-700 px-6 py-4" href="actions/delete.users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&status=<?= $exibe_usuarios[$i]['status']; ?>">
+                                <a id="BtnDelete" name="BtnDelete" class="mx-4 bg-pink-950 rounded-md text-white  hover:outline-none dark:md:hover:bg-pink-700 px-6 py-4 p-2" href="actions/delete.users.php?id=<?= $exibe_usuarios[$i]['id']; ?>&status=<?= $exibe_usuarios[$i]['status']; ?>">
 
 
                                     Alterar Status

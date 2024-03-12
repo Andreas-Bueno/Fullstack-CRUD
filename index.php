@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="h-10/12 z-1 bg-gradient-to-r from-stone-950 to-stone-700 text-white">
+<body class="h-10/12 z-1 bg-gradient-to-r from-neutral-700 to-neutral-400 text-white">
     <div class="flex min-h-screen ">
         <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-sm lg:w-96">
@@ -27,18 +27,18 @@
                     <div>
                         <form action="actions/valida_login.php" method="POST" class="space-y-6">
                             <div>
-                                <label for="email" class="backdrop-blur-sm block text-sm font-medium leading-6 text-white">Email</label>
-                                <div class="mt-2">
+                                <label for="email" class="backdrop-blur-sm block font-medium leading-6 text-white">Email</label>
+                                <div class="my-4">
                                     <input id="email" name="email" type="email" autocomplete="email" required autofocus
-                                        class="font-xl p-2 font-semi-bold text-black border-4 invalid:border-Cyan-500
-                                         focus:invalid:border-blue-500 focus:invalid:ring-blue-500 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        class="font-xl p-1 font-semi-bold text-black border-4 invalid:border-Cyan-500
+                                         focus:invalid:border-blue-500 focus:invalid:ring-blue-500 block w-full rounded-md border-0  shadow-sm  ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
 
-                            <div>
+                            <div >
                                 <label for="password"
-                                    class="backdrop-blur-sm block text-sm font-medium leading-6 text-white">Senha</label>
-                                <div class="mt-2">
+                                    class="backdrop-blur-sm block  font-medium leading-6 text-white">Senha</label>
+                                <div class="my-4">
                                     <input id="password" name="password" type="password" autocomplete="current-password"
                                         required
                                         class="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -57,7 +57,7 @@
                     <div class="mt-10">
                         <div class="relative">
                             <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                                <div class="w-full border-t border-gray-200"></div>
+                                <div class="w-full border-b border-white"></div>
                             </div>
                             <div class="relative flex justify-center text-sm font-medium leading-6">
 

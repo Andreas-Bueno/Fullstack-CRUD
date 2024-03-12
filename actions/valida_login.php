@@ -57,7 +57,7 @@ function valida_login($senhaInput,$emailInput){
 
    $result = mysql_query($sql);
     if (!$result) {
-        return "Não foi possivel executar a consulta";
+        echo "Não foi possivel executar a consulta";
         exit;
     }
     $usuario = mysql_fetch_assoc($result);
