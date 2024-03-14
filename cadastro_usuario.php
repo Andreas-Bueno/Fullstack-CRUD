@@ -1,6 +1,6 @@
 <?php
 include_once('connection.php');
-include_once('../estudos/actions/valida_login.php');
+// include_once('../estudos/actions/valida_login.php');
 include_once('../estudos/actions/create_user_login.php');
 session_start();
 connectionDb();

@@ -26,7 +26,7 @@ $exibe_usuarios = show_users();
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex text-white  w-full h-full">
+<body class="flex text-white  w-full h-full bg-gradient-to-r from-neutral-400 to-neutral-700">
 
     <nav class="grid  bg-gradient-to-r from-neutral-400 to-neutral-700	p-10 w-screen">
         <h1 class="mt-10  text-3xl	font-bold font-medium text-white text-center font-bold">

@@ -57,13 +57,13 @@ function valida_login($senhaInput,$emailInput){
 
    $result = mysql_query($sql);
     if (!$result) {
-        echo "Não foi possivel executar a consulta";
-        exit;
+        header('Location: ../falha.php');
+
     }
     $usuario = mysql_fetch_assoc($result);
 
     if (!$usuario) {
-    return ;
+     echo "<strong> Erro <br> Usuário e/ou senha inválidos </strong>";
     }else {
 
          $_SESSION['id'] = $usuario['id'];
