@@ -6,10 +6,6 @@ include_once('functions.php');
 session_start();
 connectionDb();
 
-
-$search_input = $_GET['search_input'];
-
-
 $exibe_usuarios = show_users();
 
 
@@ -26,7 +22,7 @@ $exibe_usuarios = show_users();
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex text-white  w-full h-full bg-gradient-to-r from-neutral-400 to-neutral-700">
+<body class="flex text-white font-bold  w-full h-full bg-gradient-to-r from-neutral-400 to-neutral-700">
 
     <nav class="grid  bg-gradient-to-r from-neutral-400 to-neutral-700	p-10 w-screen">
         <h1 class="mt-10  text-3xl	font-bold font-medium text-white text-center font-bold">
@@ -38,9 +34,9 @@ $exibe_usuarios = show_users();
 
             </div>
             <div class="flex w-8/12 items-center justify-between">
-                <form method="GET" class=" w-10/12 h-10 flex justify-center mx-40">
+                <form id="form_search" name="form_search" method="POST" class=" w-10/12 h-10 flex justify-center mx-40">
                     <input type="text" name="search_input" id="search_input" placeholder="Busque aqui..." class="flex w-60 p-1 h-9 text-black rounded-sm">
-                    <button id="btn_search" name="btn_search" onclick="search_data()" type="submit" class="font-bold mx-2 relative h-9 bg-pink-950 p-1 rounded-md w-20 hover:bg-pink-700">Buscar</button>
+                    <button type="submit" id="search_btn" class="font-bold mx-2 relative h-9 bg-pink-950 p-1 rounded-md w-20 hover:bg-pink-700">Buscar</button>
                 </form>
             </div>
         </div>
@@ -129,11 +125,52 @@ $exibe_usuarios = show_users();
 
 </body>
 <script>
-    var search_bar = document.getElementById('search_input');
+    //Todo capturar o valor do input
 
-    function search_data() {
-        window.location = 'functions.php?search=' + search_bar.value;
-    }
+    document.getElementById('form_search').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previne o envio padrão do formulário
+        url = 'exibe_pesquisa.php';
+        // Captura os valores dos campos de entrada
+        var busca = document.getElementById('search_input').value;
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        const urlencoded = new URLSearchParams();
+        urlencoded.append("search_input", busca);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: "follow"
+        };
+
+        async function response() {
+            const res = await fetch(url, requestOptions)
+            const data = await res.json();
+
+            const arrayDeDados = Object.values(data);
+
+            console.log(arrayDeDados);
+
+
+        }
+        response();
+
+
+
+
+
+
+
+        // fetch("http://localhost:8000/estudos/exibe_pesquisa.php", requestOptions)
+        //     .then((response) => {
+        //         response.json()
+        //         console.log(response);
+        //     })
+        //     .catch((error) => console.error())
+    });
 </script>
 
 </html>
