@@ -137,11 +137,6 @@ $exibe_usuarios = show_users();
     // Atribuindo uma variavel para o form
     var tr_principal = document.getElementById('ocult_div');
 
-
-
-
-
-
     //ao clicar no submit
     document.getElementById('form_search').addEventListener('submit', function(event) {
         event.preventDefault(); // Previne o envio padrão do formulário
@@ -150,143 +145,151 @@ $exibe_usuarios = show_users();
         var busca = document.getElementById('search_input').value;
         var tabela_id = document.getElementById('tabela_principal')
 
-
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        const urlencoded = new URLSearchParams();
-        urlencoded.append("search_input", busca);
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: "follow"
-        };
-
-        function mostrarPorAlgunsSegundos() {
-            // Remover a classe 'invisible'
-            document.getElementById('alert_search').classList.remove('invisible');
-
-            // Definir um tempo (em milissegundos) para mostrar a div
-            const tempoMostrando = 3000; // 3 segundos
-            const tempoReload = 3200;
+        if (busca == '') {
+            alert('Campo de busca vazio');
+        } else {
 
 
-            setTimeout(function() {
 
-                document.getElementById('alert_search').classList.add('invisible');
-            }, tempoMostrando);
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-            setTimeout(function() {
-                window.location.reload();
-           }, tempoMostrando);
-        }
+            const urlencoded = new URLSearchParams();
+            urlencoded.append("search_input", busca);
 
-        async function response() {
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: urlencoded,
+                redirect: "follow"
+            };
+
+            function mostrarPorAlgunsSegundos() {
+                // Remover a classe 'invisible'
+                document.getElementById('alert_search').classList.remove('invisible');
+
+                // Definir um tempo (em milissegundos) para mostrar a div
+                const tempoMostrando = 3000; // 3 segundos
+                const tempoReload = 3200;
 
 
-            const res = await fetch(url, requestOptions)
+                setTimeout(function() {
+
+                    document.getElementById('alert_search').classList.add('invisible');
+                }, tempoMostrando);
+
+                setTimeout(function() {
+                    window.location.reload();
+                }, tempoMostrando);
+            }
+
+            async function response() {
 
 
-            const data = await res.json();
+                const res = await fetch(url, requestOptions)
 
 
-            arrayDeDados = Object.values(data);
+                const data = await res.json();
 
 
-            if (res.ok) {
-                console.log('Promise resolved and HTTP status is successful');
-                // ...do something with the response
-            } else {
-                // Custom message for failed HTTP codes
+                arrayDeDados = Object.values(data);
 
-                if (res.status === 404) mostrarPorAlgunsSegundos();
-                if (res.status === 500) throw new Error('500, internal server error');
-                // For any other server error
+
+                if (res.ok) {
+                    console.log('Promise resolved and HTTP status is successful');
+                    // ...do something with the response
+                } else {
+                    // Custom message for failed HTTP codes
+
+                    if (res.status === 404) mostrarPorAlgunsSegundos();
+                    if (res.status === 500) throw new Error('500, internal server error');
+                    // For any other server error
+
+                }
+
+                var minhaDiv = document.getElementById("tabela_search_and_all");
+                var botaoExistente_reset = document.getElementById('BtnReset');
+                var botaoExistente_status = document.getElementById('BtnDelete');
+
+                minhaDiv.innerHTML = "";
+
+
+                for (i = 0; i < arrayDeDados.length; i++) {
+                    result_id = arrayDeDados[i]['id'].toString();
+                    result_name = arrayDeDados[i]['usuario'].toString();
+                    result_email = arrayDeDados[i]['email'].toString();
+                    result_senha = arrayDeDados[i]['senha'].toString();
+                    result_status = arrayDeDados[i]['status'].toString();
+                }
+                var tbody = document.getElementById("tbody_new");
+                var novatbody = document.createElement("tbody");
+                var novaLinha = document.createElement("tr");
+                var colunaNome = document.createElement("td");
+                var colunaId = document.createElement("td");
+
+
+
+                colunaId.textContent = result_id;
+                novaLinha.appendChild(colunaId);
+
+                colunaNome.textContent = result_name;
+                novaLinha.appendChild(colunaNome);
+
+
+                //adicionando as classes para alinhar a pesquisa corretamente
+                minhaDiv.classList.add("text-white");
+                minhaDiv.classList.add("p-2");
+                minhaDiv.classList.add("gap-12");
+                minhaDiv.classList.add("mt-4");
+                minhaDiv.classList.add("w-screen");
+
+                //alinhando Btns
+                botaoExistente_reset.classList.add("w-5");
+                botaoExistente_status.classList.add("w-5");
+
+                //criando os elentos e adicionando ao final os botões existentes
+                var colunaEmail = document.createElement("td");
+                colunaEmail.textContent = result_email;
+                novaLinha.appendChild(colunaEmail);
+
+                var colunaSenha = document.createElement("th");
+                colunaSenha.textContent = result_senha;
+                novaLinha.appendChild(colunaSenha);
+
+                var colunaStatus = document.createElement("td");
+                colunaStatus.textContent = result_status;
+                novaLinha.appendChild(colunaStatus);
+                // Adiciona o botão clonado à div dinâmica
+
+
+                var colunaBtn01 = document.createElement("td");
+                var colunaBtn02 = document.createElement("td");
+
+                minhaDiv.appendChild(novaLinha);
+
+
+                novaLinha.classList.add("h-20");
+
+                novaLinha.classList.add("bg-stone-900");
+                novaLinha.classList.add("ml-4");
+                botaoExistente_status.classList.add("mx-2");
+                botaoExistente_reset.classList.add("mx-2");
+
+                novaLinha.appendChild(colunaBtn01);
+
+                colunaBtn01.appendChild(botaoExistente_status);
+                colunaBtn01.appendChild(botaoExistente_reset);
+
+
 
             }
 
-            var minhaDiv = document.getElementById("tabela_search_and_all");
-            var botaoExistente_reset = document.getElementById('BtnReset');
-            var botaoExistente_status = document.getElementById('BtnDelete');
-
-            minhaDiv.innerHTML = "";
 
 
-            for (i = 0; i < arrayDeDados.length; i++) {
-                result_id = arrayDeDados[i]['id'].toString();
-                result_name = arrayDeDados[i]['usuario'].toString();
-                result_email = arrayDeDados[i]['email'].toString();
-                result_senha = arrayDeDados[i]['senha'].toString();
-                result_status = arrayDeDados[i]['status'].toString();
-            }
-            var tbody = document.getElementById("tbody_new");
-            var novatbody = document.createElement("tbody");
-            var novaLinha = document.createElement("tr");
-            var colunaNome = document.createElement("td");
-            var colunaId = document.createElement("td");
-
-
-
-            colunaId.textContent = result_id;
-            novaLinha.appendChild(colunaId);
-
-            colunaNome.textContent = result_name;
-            novaLinha.appendChild(colunaNome);
-
-
-            //adicionando as classes para alinhar a pesquisa corretamente
-            minhaDiv.classList.add("text-white");
-            minhaDiv.classList.add("p-2");
-            minhaDiv.classList.add("gap-12");
-            minhaDiv.classList.add("mt-4");
-            minhaDiv.classList.add("w-screen");
-
-            //alinhando Btns
-            botaoExistente_reset.classList.add("w-5");
-            botaoExistente_status.classList.add("w-5");
-
-            //criando os elentos e adicionando ao final os botões existentes
-            var colunaEmail = document.createElement("td");
-            colunaEmail.textContent = result_email;
-            novaLinha.appendChild(colunaEmail);
-
-            var colunaSenha = document.createElement("th");
-            colunaSenha.textContent = result_senha;
-            novaLinha.appendChild(colunaSenha);
-
-            var colunaStatus = document.createElement("td");
-            colunaStatus.textContent = result_status;
-            novaLinha.appendChild(colunaStatus);
-            // Adiciona o botão clonado à div dinâmica
-
-
-            var colunaBtn01 = document.createElement("td");
-            var colunaBtn02 = document.createElement("td");
-
-            minhaDiv.appendChild(novaLinha);
-
-
-            novaLinha.classList.add("h-20");
-
-            novaLinha.classList.add("bg-stone-900");
-            novaLinha.classList.add("ml-4");
-            botaoExistente_status.classList.add("mx-2");
-            botaoExistente_reset.classList.add("mx-2");
-
-            novaLinha.appendChild(colunaBtn01);
-
-            colunaBtn01.appendChild(botaoExistente_status);
-            colunaBtn01.appendChild(botaoExistente_reset);
-
+            response();
 
 
         }
-
-
-
-        response();
 
     });
 </script>
