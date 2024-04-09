@@ -43,10 +43,17 @@ $exibe_usuarios = show_users();
 
 
         </div>
-        <div id="alert_search" class="flex justify-center items-center h-22 mx-4 my-4 invisible">
-            <div class="bg-yellow-100 text-yellow-600 p-8 rounded-lg text-2xl">
+        <div id="alert_search" class="fixed justify-center items-center h-22 inset-x-0 mt-60 mx-auto invisible w-60 z-40 shadow-2xl p-2">
+            <div class="bg-yellow-100 text-yellow-600 p-8 rounded-lg text-xl ">
                 <!-- Conteúdo da sua caixa aqui -->
                 <p>Usuáio não encontrado 😞</p>
+            </div>
+        </div>
+
+        <div id="campo_vazio" class="fixed justify-center items-center h-22 inset-x-0 mt-60 mx-auto invisible w-60 z-40 shadow-2xl p-2">
+            <div class="bg-yellow-100 text-yellow-600 p-8 rounded-lg text-xl ">
+                <!-- Conteúdo da sua caixa aqui -->
+                <p>Campo de busca Vazio 😞</p>
             </div>
         </div>
 
@@ -146,10 +153,10 @@ $exibe_usuarios = show_users();
         var tabela_id = document.getElementById('tabela_principal')
 
         if (busca == '') {
-            alert('Campo de busca vazio');
+            var alert_vazio = document.getElementById('campo_vazio')
+            alert_vazio.classList.remove('invisible');
+
         } else {
-
-
 
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -172,7 +179,16 @@ $exibe_usuarios = show_users();
                 const tempoMostrando = 3000; // 3 segundos
                 const tempoReload = 3200;
 
+                if (busca == '') {
+                    setTimeout(function() {
 
+                        document.getElementById('campo_vazio').classList.add('invisible');
+                    }, tempoMostrando);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, tempoMostrando);
+
+                }
                 setTimeout(function() {
 
                     document.getElementById('alert_search').classList.add('invisible');
@@ -180,7 +196,7 @@ $exibe_usuarios = show_users();
 
                 setTimeout(function() {
                     window.location.reload();
-                }, tempoMostrando);
+                }, tempoReload);
             }
 
             async function response() {
