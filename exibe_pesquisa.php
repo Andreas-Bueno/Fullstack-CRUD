@@ -7,7 +7,6 @@ connectionDb();
 //Tratando os dados enviados pelo front
 $inputData = $_POST['search_input'];
 
-
  $response[] = valida_search_input($inputData);
 
  $json_response = json_encode($response);
@@ -46,13 +45,17 @@ function valida_search_input($inputData)
         $sql = "SELECT * FROM `usuario` WHERE usuario LIKE '%$inputData%'";
         $resultado = mysql_query($sql);
 
+
         if (mysql_num_rows($resultado) > 0) {
             while ($row = mysql_fetch_assoc($resultado)) {
 
                 return $row;
             }
         } else {
-            return  $resultado;
+
+                http_response_code(404);
+                return json_encode("{}");
+
         }
     }
 }
